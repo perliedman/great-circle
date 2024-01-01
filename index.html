@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World</title>
+    <style>
+      body {
+        background-color: #32302e;
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #info {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+
+      #search {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+      }
+
+      .overlay {
+        background-color: white;
+        opacity: 0.8;
+        padding: 0.25rem 1rem;
+        border-radius: 0.2rem;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+      }
+
+      .overlay input {
+        border: none;
+        outline: none;
+      }
+
+      .center {
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0">
+      <defs>
+        <radialGradient cx="75%" cy="25%" id="ocean_fill">
+          <stop offset="5%" stop-color="#bcd" />
+          <stop offset="100%" stop-color="#9ab" />
+        </radialGradient>
+        <radialGradient cx="75%" cy="25%" id="globe_highlight">
+          <stop offset="5%" stop-color="#ffd" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#ba9" stop-opacity="0.2" />
+        </radialGradient>
+        <radialGradient cx="50%" cy="40%" id="globe_shading">
+          <stop offset="50%" stop-color="#9ab" stop-opacity="0" />
+          <stop offset="100%" stop-color="#3e6184" stop-opacity="0.3" />
+        </radialGradient>
+        <radialGradient cx="50%" cy="50%" id="drop_shadow">
+          <stop offset="20%" stop-color="#000" stop-opacity="0.5" />
+          <stop offset="100%" stop-color="#000" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+    </svg>
+    <div id="map"></div>
+    <div id="info" class="overlay">
+      <div id="route-distance"></div>
+    </div>
+    <div id="search">
+      <div class="overlay center">
+        <input
+          type="search"
+          id="search-input"
+          list="search-options"
+          placeholder="Search..."
+        />
+        <datalist id="search-options"></datalist>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
