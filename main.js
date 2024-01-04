@@ -70,9 +70,9 @@ function addWaypoint(coord) {
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", "none")
+    .attr("fill", "red")
     .attr("stroke", "red")
-    .attr("stroke-width", 2);
+    .attr("stroke-width", 1);
 
   let route = [];
   if (waypoints.length === 2) {
@@ -141,13 +141,15 @@ d3.select("#search-options")
   .data(airports.features)
   .enter()
   .append("option")
-  .attr("value", (d) => d.properties.name)
-  .text((d) => `${d.properties.iata} / ${d.properties.icao}`);
+  .attr("value", (d) => d.properties.icao)
+  .text(
+    (d) => `${d.properties.name} (${d.properties.iata} / ${d.properties.icao})`
+  );
 
 const search = d3.select("#search-input");
 search.on("change", (e) => {
   const airport = airports.features.find(
-    (d) => d.properties.name === e.target.value
+    (d) => d.properties.icao === e.target.value
   );
   if (!airport) return;
   search.property("value", "");
